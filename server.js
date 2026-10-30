@@ -1,7 +1,10 @@
 const express = require('express');
-const {PORT} = require('./config/index.js')
+const {serverConfig ,logger}  = require('./config')
+const { router } = require('./routers/v1/index.js');
 
 const app = express()
-app.listen(PORT,() => {
-    console.log(`server is ready on port ${PORT}`);
+app.use('/' ,router)
+app.listen(serverConfig.PORT,() => {
+    console.log(`server is ready on port ${serverConfig.PORT}`);
+    logger.info("succces fully stated server ")
 })
